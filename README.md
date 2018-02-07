@@ -11,7 +11,7 @@
 # STEP 10: Create graph of percent coverage in relation to species
 
 library(tidyverse)
-original.df <- read.csv("./data_re_meth2.csv")
+original.df <- read_csv("./data_re_meth2.csv")
 
 # STEP 1: Replace "NA" with "0"
 original.df[is.na(original.df)] <- 0
