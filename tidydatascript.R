@@ -119,4 +119,6 @@ percentcoverage.df <- percentcoverage.df %>%
 ggplot(data = percentcoverage.df, mapping = aes(x = ground.type, y = percent.cover)) +
   geom_boxplot() +
   facet_wrap(~ species, nrow = 2) +
-  coord_flip()
+  coord_flip() +
+  xlab("Substrate Type") + 
+  ylab("Percent Cover")
