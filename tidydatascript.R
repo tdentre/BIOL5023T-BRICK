@@ -1,6 +1,6 @@
 ### Investigating factors affecting nest selection for different bird species
-### Q1: Do different species of birds perfer different substrate types for nest selection
-### Q2: Do different species of birds perfer different rock sizes for nest selection
+### Q1: Do different species of birds perfer different substrate types for nest selection?
+### Q2: Do different species of birds perfer different rock sizes for nest selection?
 
 # STEP 1: Replace "NA" with "0"
 # STEP 2: For coloumns 7-16, "0" should be replaced with "NA"
