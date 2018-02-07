@@ -10,8 +10,8 @@
 # STEP 10: Create graph of percent coverage in relation to species
 
 library(tidyverse)
-setwd("/Users/Tyler/Documents/research methods")
-original.df <- read.csv("data_re_meth2.csv")
+setwd("./Data")
+original.df <- read.csv("./data_re_meth2.csv")
 
 # STEP 1: Replace "NA" with "0"
 original.df[is.na(original.df)] <- 0
@@ -70,7 +70,7 @@ rocksize.df <- rocksize.df[rocksize.df$species != 'home', ]
 ### Removes all rows with 'home' variable
 
 # STEP 7: Create boxplot of rocksize in relation to species
-ggplot(data = rocksize.df, mapping = aes(x = species, y = rock.circumference)) +
+ggplot(data = rocksize, mapping = aes(x = species, y = rock.circumference)) +
   geom_boxplot(varwidth = TRUE) +
   ggtitle("Rock Diameter") + 
   xlab("Species") + 
@@ -111,7 +111,7 @@ percentcoverage.df <- percentcoverage.df %>%
   gather('rock', 'vegetation', 'mud.dirt', 'other', key = "ground.type", value = "percent.cover")
 
 # STEP 10: Create graph of percent coverage in relation to species
-ggplot(data = percentcoverage.df, mapping = aes(x = ground.type, y = percent.cover)) +
+ggplot(data = percentcoverage, mapping = aes(x = ground.type, y = percent.cover)) +
   geom_boxplot() +
   facet_wrap(~ species, nrow = 2) +
   coord_flip()
