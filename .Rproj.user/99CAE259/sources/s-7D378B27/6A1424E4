@@ -1,0 +1,29 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1518003192238.000,
+    "dirty" : false,
+    "encoding" : "",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "6A1424E4",
+    "lastKnownWriteTime" : 8026386978400596581,
+    "last_content_update" : 1518003192238,
+    "path" : null,
+    "project_path" : null,
+    "properties" : {
+        "cacheKey" : "49AA6C6E",
+        "caption" : "percentcoverage",
+        "contentUrl" : "grid_resource/gridviewer.html?env=&obj=percentcoverage&cache_key=49AA6C6E",
+        "displayedObservations" : "936",
+        "environment" : "",
+        "object" : "percentcoverage",
+        "preview" : "0",
+        "totalObservations" : "936",
+        "variables" : "4"
+    },
+    "relative_order" : 2,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_dataframe"
+}

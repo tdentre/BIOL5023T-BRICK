@@ -1,0 +1,29 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1518003225721.000,
+    "dirty" : false,
+    "encoding" : "",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "F5B1A762",
+    "lastKnownWriteTime" : 31244173386448898,
+    "last_content_update" : 1518003225721,
+    "path" : null,
+    "project_path" : null,
+    "properties" : {
+        "cacheKey" : "3B287830",
+        "caption" : "rocksize",
+        "contentUrl" : "grid_resource/gridviewer.html?env=&obj=rocksize&cache_key=3B287830",
+        "displayedObservations" : "2340",
+        "environment" : "",
+        "object" : "rocksize",
+        "preview" : "0",
+        "totalObservations" : "2340",
+        "variables" : "4"
+    },
+    "relative_order" : 3,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_dataframe"
+}

@@ -1,0 +1,22 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1518003130278.000,
+    "dirty" : true,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "1255448610",
+    "id" : "39B53A62",
+    "lastKnownWriteTime" : 1517405485,
+    "last_content_update" : 1518012385260,
+    "path" : "~/research methods/tidydatascript.R",
+    "project_path" : null,
+    "properties" : {
+        "cursorPosition" : "12,9",
+        "scrollLine" : "4"
+    },
+    "relative_order" : 1,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}
