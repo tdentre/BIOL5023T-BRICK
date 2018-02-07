@@ -12,6 +12,8 @@
 library(tidyverse)
 setwd("./Data")
 original.df <- read.csv("./data_re_meth2.csv")
+percentcoverage.df <- read.csv("./percentcoverage.csv")
+rocksize.df <- read.csv("./rocksize.csv")
 
 # STEP 1: Replace "NA" with "0"
 original.df[is.na(original.df)] <- 0
