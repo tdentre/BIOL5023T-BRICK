@@ -10,7 +10,6 @@
 # STEP 10: Create graph of percent coverage in relation to species
 
 library(tidyverse)
-setwd("./Data")
 original.df <- read_csv("./data_re_meth2.csv")
 percentcoverage.df <- read_csv("./percentcoverage.csv")
 rocksize.df <- read_csv("./rocksize.csv")
