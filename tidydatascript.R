@@ -5,9 +5,9 @@
 # STEP 1: Replace "NA" with "0"
 # STEP 2: For coloumns 7-16, "0" should be replaced with "NA"
 # Step 3: Remove 'home' row
-# STEP 4: The two different data sets need to be seperated into two different dataframes
-# STEP 5: Rename columns X1-X10, 1-10 in rocksize.df
-# STEP 6: Edit 'species' coloumn to have no numbers in both dataframes
+# STEP 4: Edit 'species' coloumn to have no numbers
+# STEP 5: The two different data sets need to be seperated into two different dataframes
+# STEP 6: Rename columns X1-X10, 1-10 in rocksize.df
 # STEP 7: In rocksize.df, create seperate columns for 'rock.num' and 'rock.circumference'
 # STEP 8: Create boxplot of rocksize in relation to species
 # STEP 9: In percentcoverage.df, create seperate columns for 'ground.type' and 'amount.of.cover'
@@ -28,18 +28,15 @@ original.df[, 7:16][original.df[, 7:16] == 0] <- NA
 original.df <- original.df[original.df$species != 'home', ]
 ### Removes all rows with 'home' value
 
-# STEP 4: The two different data sets need to be seperated into two different dataframes
+#STEP 4: Edit 'species' coloumn to have no numbers
+original.df <- mutate(original.df, species = gsub("[[:digit:]]","",original.df$species))
+
+# STEP 5: The two different data sets need to be seperated into two different dataframes
 percentcoverage.df <- select(original.df, species, photo, '%rock', '%veg', '%mud/dirt', '%other')
 rocksize.df <- select(original.df, species, photo, X1, X2, X3, X4, X5, X6, X7, X8, X9, X10)
 
-# STEP 5: Rename columns X1-X10, 1-10 in rocksize.df
+# STEP 6: Rename columns X1-X10, 1-10 in rocksize.df
 names(rocksize.df)[3:12] <- c('1', '2', '3', '4', '5', '6', '7', '8', '9', '10')
-
-# STEP 6: Edit 'species' coloumn to have no numbers for both dataframes
-
-rocksize.df <- mutate(rocksize.df, species = gsub("[[:digit:]]","",rocksize.df$species))
-  
-percentcoverage.df <- mutate(percentcoverage.df, species = gsub("[[:digit:]]","",percentcoverage.df$species))
 
 # STEP 7: In rocksize.df, create seperate columns for 'rock.num' and 'rock.circumference'
 rocksize.df <- rocksize.df %>%
