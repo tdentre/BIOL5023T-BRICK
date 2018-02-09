@@ -38,28 +38,7 @@ names(rocksize.df)[3:12] <- c('1', '2', '3', '4', '5', '6', '7', '8', '9', '10')
 
 # STEP 5: Edit 'species' coloumn to have no numbers for both dataframes
 
-correctedspecies <- gsub("[[:digit:]]","",rocksize.df$species) %>%
-  data.frame(correctedspecies)
-### creates a vector of the correct alpha only values; turns correctedspecies into a dataframe
-
-correctedspecies$ID <- 1:nrow(correctedspecies)
-rocksize.df$ID <- 1:nrow(rocksize.df)
-### creates a common column 'ID' for both dataframes to allow them to merge without changing the order of the rows
-
-merged <- merge(x = rocksize.df, y = correctedspecies, by = "ID", sort = FALSE)
-### merges rocksize.df with the correctedspecies
-
-merged$species <- NULL
-### removes old species column
-
-rocksize.df <- merged[, c(1, 13, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12)]
-### reorders columns
-
-rocksize.df$ID <- NULL
-### removes ID column
-
-names(rocksize.df)[names(rocksize.df) == 'correctedspecies'] <- 'species'
-### renames the 'correctedspecies' column to 'species'
+rocksize.df <- mutate(rocksize.df, species = gsub("[[:digit:]]","",rocksize.df$species))
   
 # STEP 6: In rocksize.df, create seperate columns for 'rock.num' and 'rock.circumference'
 rocksize.df <- rocksize.df %>%
