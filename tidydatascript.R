@@ -33,7 +33,7 @@ names(rocksize.df)[3:12] <- c('1', '2', '3', '4', '5', '6', '7', '8', '9', '10')
 
 # STEP 5: Edit 'species' coloumn to have no numbers for both dataframes
 
-correctedspecies <- gsub("[[:digit:]]","",rocksize.df1$species)
+correctedspecies <- gsub("[[:digit:]]","",rocksize.df$species)
 ### creates a vector of the correct alpha only values
 
 correctedspecies <- data.frame(correctedspecies)
