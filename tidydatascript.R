@@ -26,23 +26,14 @@ original.df[, 7:16][original.df[, 7:16] == 0] <- NA
 
 # STEP 3: The two different data sets need to be seperated into two different dataframes
 percentcoverage.df <- select(original.df, species, photo, X.rock, X.veg, X.mud.dirt, X.other)
-rocksize.df <- select(original.df, species, photo, X1, X2, X3, X4, X5, X6, X7, X8, X9, X10)
+rocksize.df1 <- select(original.df, species, photo, X1, X2, X3, X4, X5, X6, X7, X8, X9, X10)
 
 # STEP 4: Rename columns X1-X10, 1-10 in rocksize.df
-names(rocksize.df)[names(rocksize.df) == 'X1'] <- '1'
-names(rocksize.df)[names(rocksize.df) == 'X2'] <- '2' 
-names(rocksize.df)[names(rocksize.df) == 'X3'] <- '3' 
-names(rocksize.df)[names(rocksize.df) == 'X4'] <- '4' 
-names(rocksize.df)[names(rocksize.df) == 'X5'] <- '5' 
-names(rocksize.df)[names(rocksize.df) == 'X6'] <- '6' 
-names(rocksize.df)[names(rocksize.df) == 'X7'] <- '7' 
-names(rocksize.df)[names(rocksize.df) == 'X8'] <- '8' 
-names(rocksize.df)[names(rocksize.df) == 'X9'] <- '9' 
-names(rocksize.df)[names(rocksize.df) == 'X10'] <- '10'
+names(rocksize.df)[3:12] <- c('1', '2', '3', '4', '5', '6', '7', '8', '9', '10')
 
 # STEP 5: Edit 'species' coloumn to have no numbers for both dataframes
 
-correctedspecies <- gsub("[[:digit:]]","",rocksize.df$species)
+correctedspecies <- gsub("[[:digit:]]","",rocksize.df1$species)
 ### creates a vector of the correct alpha only values
 
 correctedspecies <- data.frame(correctedspecies)
