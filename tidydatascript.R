@@ -53,15 +53,10 @@ ggplot(data = rocksize.df, mapping = aes(x = species, y = rock.circumference)) +
   ylab("Diameter (cm)")
 ### creates boxplot with width proportional to the number of observations
 
+# STEP 9: Rename columns in percentcoverage.df 
+names(percentcoverage.df)[3:6] <- c('rock', 'vegetation', 'mud.dirt', 'other')
+
 # STEP 9: In percentcoverage.df, create seperate columns for 'ground.type' and 'amount.of.cover'
-
-names(percentcoverage.df)[3:6] <- c('rock', 'vegetation', 'mud/dirt', 'other')
-
-names(percentcoverage.df)[names(percentcoverage.df) == 'X.rock'] <- 'rock'
-names(percentcoverage.df)[names(percentcoverage.df) == 'X.veg'] <- 'vegetation'
-names(percentcoverage.df)[names(percentcoverage.df) == 'X.mud.dirt'] <- 'mud.dirt'
-names(percentcoverage.df)[names(percentcoverage.df) == 'X.other'] <- 'other'
-
 percentcoverage.df <- percentcoverage.df %>%
   gather('rock', 'vegetation', 'mud.dirt', 'other', key = "ground.type", value = "percent.cover")
 
