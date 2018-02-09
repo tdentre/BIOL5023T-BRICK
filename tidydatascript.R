@@ -4,14 +4,15 @@
 
 # STEP 1: Replace "NA" with "0"
 # STEP 2: For coloumns 7-16, "0" should be replaced with "NA"
-# STEP 3: The two different data sets need to be seperated into two different dataframes
-# STEP 4: Rename columns X1-X10, 1-10 in rocksize.df
-# STEP 5: Edit 'species' coloumn to have no numbers in both dataframes
-# STEP 6: In rocksize.df, create seperate columns for 'rock.num' and 'rock.circumference'
-# STEP 7: Create boxplot of rocksize in relation to species
-# STEP 8: Edit 'species' column to have no numbers in percentcoverage.df
-# STEP 9: In percentcoverage.df, create seperate columns for 'ground.type' and 'amount.of.cover'
-# STEP 10: Create graph of percent coverage in relation to species
+# Step 3: Remove 'home' row
+# STEP 4: The two different data sets need to be seperated into two different dataframes
+# STEP 5: Rename columns X1-X10, 1-10 in rocksize.df
+# STEP 6: Edit 'species' coloumn to have no numbers in both dataframes
+# STEP 7: In rocksize.df, create seperate columns for 'rock.num' and 'rock.circumference'
+# STEP 8: Create boxplot of rocksize in relation to species
+# STEP 9: Edit 'species' column to have no numbers in percentcoverage.df
+# STEP 10: In percentcoverage.df, create seperate columns for 'ground.type' and 'amount.of.cover'
+# STEP 11: Create graph of percent coverage in relation to species
 
 library(tidyverse)
 original.df <- read_csv("./originalbirddata.csv")
@@ -24,6 +25,10 @@ original.df[is.na(original.df)] <- 0
 # STEP 2: For coloumns 7-16, "0" should be replaced with "NA"
 original.df[, 7:16][original.df[, 7:16] == 0] <- NA
 
+# Step 3: Remove 'home' row
+original.df <- original.df[original.df$species != 'home', ]
+### Removes all rows with 'home' value
+
 # STEP 3: The two different data sets need to be seperated into two different dataframes
 percentcoverage.df <- select(original.df, species, photo, '%rock', '%veg', '%mud/dirt', '%other')
 rocksize.df <- select(original.df, species, photo, X1, X2, X3, X4, X5, X6, X7, X8, X9, X10)
@@ -33,11 +38,9 @@ names(rocksize.df)[3:12] <- c('1', '2', '3', '4', '5', '6', '7', '8', '9', '10')
 
 # STEP 5: Edit 'species' coloumn to have no numbers for both dataframes
 
-correctedspecies <- gsub("[[:digit:]]","",rocksize.df$species)
-### creates a vector of the correct alpha only values
-
-correctedspecies <- data.frame(correctedspecies)
-### turns correctedspecies into a dataframe
+correctedspecies <- gsub("[[:digit:]]","",rocksize.df$species) %>%
+  data.frame(correctedspecies)
+### creates a vector of the correct alpha only values; turns correctedspecies into a dataframe
 
 correctedspecies$ID <- 1:nrow(correctedspecies)
 rocksize.df$ID <- 1:nrow(rocksize.df)
@@ -92,9 +95,6 @@ percentcoverage.df$ID <- NULL
 
 names(percentcoverage.df)[names(percentcoverage.df) == 'correctedspecies'] <- 'species'
 ### renames the 'correctedspecies' column to 'species'
-
-percentcoverage.df <- percentcoverage.df[percentcoverage.df$species != 'home', ]
-### Removes all rows with 'home' value
 
 # STEP 9: In percentcoverage.df, create seperate columns for 'ground.type' and 'amount.of.cover'
 
