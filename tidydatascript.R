@@ -25,8 +25,8 @@ original.df[is.na(original.df)] <- 0
 original.df[, 7:16][original.df[, 7:16] == 0] <- NA
 
 # STEP 3: The two different data sets need to be seperated into two different dataframes
-percentcoverage.df <- select(original.df, species, photo, X.rock, X.veg, X.mud.dirt, X.other)
-rocksize.df1 <- select(original.df, species, photo, X1, X2, X3, X4, X5, X6, X7, X8, X9, X10)
+percentcoverage.df <- select(original.df, species, photo, '%rock', '%veg', '%mud/dirt', '%other')
+rocksize.df <- select(original.df, species, photo, X1, X2, X3, X4, X5, X6, X7, X8, X9, X10)
 
 # STEP 4: Rename columns X1-X10, 1-10 in rocksize.df
 names(rocksize.df)[3:12] <- c('1', '2', '3', '4', '5', '6', '7', '8', '9', '10')
