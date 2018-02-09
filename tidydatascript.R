@@ -10,9 +10,8 @@
 # STEP 6: Edit 'species' coloumn to have no numbers in both dataframes
 # STEP 7: In rocksize.df, create seperate columns for 'rock.num' and 'rock.circumference'
 # STEP 8: Create boxplot of rocksize in relation to species
-# STEP 9: Edit 'species' column to have no numbers in percentcoverage.df
-# STEP 10: In percentcoverage.df, create seperate columns for 'ground.type' and 'amount.of.cover'
-# STEP 11: Create graph of percent coverage in relation to species
+# STEP 9: In percentcoverage.df, create seperate columns for 'ground.type' and 'amount.of.cover'
+# STEP 10: Create graph of percent coverage in relation to species
 
 library(tidyverse)
 original.df <- read_csv("./originalbirddata.csv")
@@ -29,25 +28,24 @@ original.df[, 7:16][original.df[, 7:16] == 0] <- NA
 original.df <- original.df[original.df$species != 'home', ]
 ### Removes all rows with 'home' value
 
-# STEP 3: The two different data sets need to be seperated into two different dataframes
+# STEP 4: The two different data sets need to be seperated into two different dataframes
 percentcoverage.df <- select(original.df, species, photo, '%rock', '%veg', '%mud/dirt', '%other')
 rocksize.df <- select(original.df, species, photo, X1, X2, X3, X4, X5, X6, X7, X8, X9, X10)
 
-# STEP 4: Rename columns X1-X10, 1-10 in rocksize.df
+# STEP 5: Rename columns X1-X10, 1-10 in rocksize.df
 names(rocksize.df)[3:12] <- c('1', '2', '3', '4', '5', '6', '7', '8', '9', '10')
 
-# STEP 5: Edit 'species' coloumn to have no numbers for both dataframes
+# STEP 6: Edit 'species' coloumn to have no numbers for both dataframes
 
 rocksize.df <- mutate(rocksize.df, species = gsub("[[:digit:]]","",rocksize.df$species))
   
-# STEP 6: In rocksize.df, create seperate columns for 'rock.num' and 'rock.circumference'
+percentcoverage.df <- mutate(percentcoverage.df, species = gsub("[[:digit:]]","",percentcoverage.df$species))
+
+# STEP 7: In rocksize.df, create seperate columns for 'rock.num' and 'rock.circumference'
 rocksize.df <- rocksize.df %>%
   gather('1', '2', '3', '4', '5', '6', '7', '8', '9', '10', key = "rock#", value = "rock.circumference")
 
-rocksize.df <- rocksize.df[rocksize.df$species != 'home', ]
-### Removes all rows with 'home' variable
-
-# STEP 7: Create boxplot of rocksize in relation to species
+# STEP 8: Create boxplot of rocksize in relation to species
 ggplot(data = rocksize.df, mapping = aes(x = species, y = rock.circumference)) +
   geom_boxplot(varwidth = TRUE) +
   ggtitle("Rock Diameter") + 
@@ -55,27 +53,9 @@ ggplot(data = rocksize.df, mapping = aes(x = species, y = rock.circumference)) +
   ylab("Diameter (cm)")
 ### creates boxplot with width proportional to the number of observations
 
-# STEP 8: Edit 'species' column to have no numbers in percentcoverage.df
-
-percentcoverage.df$ID <- 1:nrow(percentcoverage.df)
-### Adds 'ID' column
-
-merged2 <- merge(x = percentcoverage.df, y = correctedspecies, by = "ID", sort = FALSE)
-### merges percentcoverage.df with the correctedspecies
-
-merged2$species <- NULL
-### removes old species column
-
-percentcoverage.df <- merged2[, c(1, 7, 2, 3, 4, 5, 6)]
-### reorders columns
-
-percentcoverage.df$ID <- NULL
-### removes 'ID' column
-
-names(percentcoverage.df)[names(percentcoverage.df) == 'correctedspecies'] <- 'species'
-### renames the 'correctedspecies' column to 'species'
-
 # STEP 9: In percentcoverage.df, create seperate columns for 'ground.type' and 'amount.of.cover'
+
+names(percentcoverage.df)[3:6] <- c('rock', 'vegetation', 'mud/dirt', 'other')
 
 names(percentcoverage.df)[names(percentcoverage.df) == 'X.rock'] <- 'rock'
 names(percentcoverage.df)[names(percentcoverage.df) == 'X.veg'] <- 'vegetation'
