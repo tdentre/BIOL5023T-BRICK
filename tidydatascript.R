@@ -74,6 +74,7 @@ ggplot(data = percentcoverageSPECIES.df, mapping = aes(x = ground.type, y = perc
   geom_boxplot() +
   facet_wrap(~ species, nrow = 2) +
   coord_flip() +
+  ggtitle("Amount of Coverage of Different Substrates Around the Nests of Various Species on _______ Island, N.S.") +
   xlab("Substrate Type") + 
   ylab("Percent Cover") +
   scale_x_discrete(labels = c('Other', 'Mud or Dirt', 'Rock', 'Vegetation'), 
