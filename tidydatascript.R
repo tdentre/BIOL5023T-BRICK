@@ -60,9 +60,8 @@ percentcoverage.df <- percentcoverage.df %>%
   gather('rock', 'vegetation', 'mud.dirt', 'other', key = "ground.type", value = "percent.cover")
 
 # STEP 10: Create graph of percent coverage in relation to species
-### Turns out theres no command for facet wraps to label each facet individually yet so a new df was made with corrected names
 
-percentcoverageSPECIES.df <- percentcoverage.df
+percentcoverageSPECIES.df <- percentcoverage.df # Turns out theres no command for facet wraps to label each facet individually yet so a new df was made with corrected names
   
   percentcoverageSPECIES.df[percentcoverageSPECIES.df == "arte"] <- 'Arctic Tern'
   percentcoverageSPECIES.df[percentcoverageSPECIES.df == "coei"] <- 'Common Eider'
