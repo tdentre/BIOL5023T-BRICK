@@ -45,9 +45,11 @@ rocksize.df <- rocksize.df %>%
 # STEP 8: Create boxplot of rocksize in relation to species
 ggplot(data = rocksize.df, mapping = aes(x = species, y = rock.circumference)) +
   geom_boxplot(varwidth = TRUE) +
-  ggtitle("Rock Diameter") + 
+  ggtitle("Diameter of Rocks Found Near Nests of Various Species") + 
   xlab("Species") + 
-  ylab("Diameter (cm)")
+  ylab("Diameter (cm)") +
+  scale_x_discrete(labels = c('Common Eider', 'Arctic Tern', 'Sabines Gull', 'Long-Tailed Duck', 'Purple Sandpiper', 'Random'),
+                   limits = c('coei', 'arte', 'sagu', 'ltdu', 'pusa', 'rand'))
 ### creates boxplot with width proportional to the number of observations
 
 # STEP 9: Rename columns in percentcoverage.df 
@@ -58,9 +60,25 @@ percentcoverage.df <- percentcoverage.df %>%
   gather('rock', 'vegetation', 'mud.dirt', 'other', key = "ground.type", value = "percent.cover")
 
 # STEP 10: Create graph of percent coverage in relation to species
-ggplot(data = percentcoverage.df, mapping = aes(x = ground.type, y = percent.cover)) +
+### Turns out theres no command for facet wraps to label each facet individually yet so a new df was made with corrected names
+
+percentcoverageSPECIES.df <- percentcoverage.df
+  
+  percentcoverageSPECIES.df[percentcoverageSPECIES.df == "arte"] <- 'Arctic Tern'
+  percentcoverageSPECIES.df[percentcoverageSPECIES.df == "coei"] <- 'Common Eider'
+  percentcoverageSPECIES.df[percentcoverageSPECIES.df == "ltdu"] <- 'Long-Tailed Duck'
+  percentcoverageSPECIES.df[percentcoverageSPECIES.df == "pusa"] <- 'Purple Sandpiper'
+  percentcoverageSPECIES.df[percentcoverageSPECIES.df == "rand"] <- 'Random'
+  percentcoverageSPECIES.df[percentcoverageSPECIES.df == "sagu"] <- 'Sabines Duck'
+
+ggplot(data = percentcoverageSPECIES.df, mapping = aes(x = ground.type, y = percent.cover)) +
   geom_boxplot() +
   facet_wrap(~ species, nrow = 2) +
   coord_flip() +
   xlab("Substrate Type") + 
-  ylab("Percent Cover")
+  ylab("Percent Cover") +
+  scale_x_discrete(labels = c('Other', 'Mud or Dirt', 'Rock', 'Vegetation'), 
+                   limits = c('other', 'mud.dirt','rock', 'vegetation'))
+
+
+order(percentcoverageSPECIES.df1$species)
