@@ -77,3 +77,5 @@ ggplot(data = percentcoverageSPECIES.df, mapping = aes(x = ground.type, y = perc
   ylab("Percent Cover") +
   scale_x_discrete(labels = c('Other', 'Mud or Dirt', 'Rock', 'Vegetation'), 
                    limits = c('other', 'mud.dirt','rock', 'vegetation'))
+
+### Still have to figure out how to rut the 'Random' facet last
