@@ -15,8 +15,6 @@
 
 library(tidyverse)
 original.df <- read_csv("./originalbirddata.csv")
-percentcoverage.df <- read_csv("./percentcoverage.csv")
-rocksize.df <- read_csv("./rocksize.csv")
 
 # STEP 1: Replace "NA" with "0"
 original.df[is.na(original.df)] <- 0
@@ -79,3 +77,5 @@ ggplot(data = percentcoverageSPECIES.df, mapping = aes(x = ground.type, y = perc
   ylab("Percent Cover") +
   scale_x_discrete(labels = c('Other', 'Mud or Dirt', 'Rock', 'Vegetation'), 
                    limits = c('other', 'mud.dirt','rock', 'vegetation'))
+
+### Still have to figure out how to put the 'Random' facet last... {fct.reorder()}
