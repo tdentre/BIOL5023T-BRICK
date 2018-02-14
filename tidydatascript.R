@@ -15,8 +15,6 @@
 
 library(tidyverse)
 original.df <- read_csv("./originalbirddata.csv")
-percentcoverage.df <- read_csv("./percentcoverage.csv")
-rocksize.df <- read_csv("./rocksize.csv")
 
 # STEP 1: Replace "NA" with "0"
 original.df[is.na(original.df)] <- 0
