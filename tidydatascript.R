@@ -1,6 +1,6 @@
 ### Investigating factors affecting nest selection for different bird species
-### Q1: Do different species of birds perfer different substrate types for nest selection?
-### Q2: Do different species of birds perfer different rock sizes for nest selection?
+### Q1: Does substrate dictate nest seclection sites for seabirds?
+### Q2: Is there evidense for nesting selection of seabirds, based on rock diameter?
 
 # STEP 1: Replace "NA" with "0"
 # STEP 2: For coloumns 7-16, "0" should be replaced with "NA"
@@ -48,7 +48,7 @@ ggplot(data = rocksize.df, mapping = aes(x = species, y = rock.circumference)) +
   ggtitle("Diameter of Rocks Found Near Nests of Various Species on _______ Island, N.S.") + 
   xlab("Species") + 
   ylab("Diameter (cm)") +
-  scale_x_discrete(labels = c('Common Eider', 'Arctic Tern', 'Sabines Gull', 'Long-Tailed Duck', 'Purple Sandpiper', 'Random'),
+  scale_x_discrete(labels = c('Common Eider', 'Arctic Tern', 'Sabine Gull', 'Long-Tailed Duck', 'Purple Sandpiper', 'Random'),
                    limits = c('coei', 'arte', 'sagu', 'ltdu', 'pusa', 'rand'))
 ### creates boxplot with width proportional to the number of observations
 
@@ -68,7 +68,7 @@ percentcoverageSPECIES.df <- percentcoverage.df # Turns out theres no command fo
   percentcoverageSPECIES.df[percentcoverageSPECIES.df == "ltdu"] <- 'Long-Tailed Duck'
   percentcoverageSPECIES.df[percentcoverageSPECIES.df == "pusa"] <- 'Purple Sandpiper'
   percentcoverageSPECIES.df[percentcoverageSPECIES.df == "rand"] <- 'Random'
-  percentcoverageSPECIES.df[percentcoverageSPECIES.df == "sagu"] <- 'Sabines Duck'
+  percentcoverageSPECIES.df[percentcoverageSPECIES.df == "sagu"] <- 'Sabine Gull'
 
 ggplot(data = percentcoverageSPECIES.df, mapping = aes(x = ground.type, y = percent.cover)) +
   geom_boxplot() +
