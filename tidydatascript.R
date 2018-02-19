@@ -44,7 +44,7 @@ rocksize.df <- rocksize.df %>%
 # STEP 8: Create boxplot of rocksize in relation to species
 ggplot(data = rocksize.df, mapping = aes(x = species, y = rock.circumference)) +
   geom_boxplot(varwidth = TRUE) +
-  ggtitle("Diameter of Rocks Found Near Nests of Various Species on _______ Island, N.S.") + 
+  ggtitle("Diameter of Rocks Found Near Nests of Various Species on _______ Island") + 
   xlab("Species") + 
   ylab("Diameter (cm)") +
   scale_x_discrete(labels = c('Common Eider', 'Arctic Tern', 'Sabine Gull', 'Long-Tailed Duck', 'Purple Sandpiper', 'Random'),
@@ -78,7 +78,7 @@ ggplot(data = percentcoverageSPECIES.df, mapping = aes(x = ground.type, y = perc
   geom_boxplot() +
   facet_wrap(~ species, nrow = 2) +
   coord_flip() +
-  ggtitle("Amount of Coverage of Different Substrates Around the Nests of Various Species on _______ Island, N.S.") +
+  ggtitle("Amount of Coverage of Different Substrates Around the Nests of Various Species on _______ Island") +
   xlab("Substrate Type") + 
   ylab("Percent Cover") +
   scale_x_discrete(labels = c('Other', 'Mud or Dirt', 'Rock', 'Vegetation'), 
