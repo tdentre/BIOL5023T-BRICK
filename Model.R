@@ -17,4 +17,9 @@
 #gam (generalized additive model) you do not assume linear relationships between the response and predictor. gamm is mixed
 #model version of gam.
 #B0 is intercept, B1 is slope
-library(tidyverse)
+#look at residual plots to determine whether the model is a good fit
+#residuals vs. fitted should be completely random (starry night plot or shotgun plot) want slope to be zero
+#if variance increases with the mean, it indicates that poisson is best.
+#quantile-quantile plots distribution of your data to theoretical data. If they are are same you will get a straight line.
+
+#Assignment 2 for next week
