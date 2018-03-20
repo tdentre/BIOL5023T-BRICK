@@ -88,7 +88,7 @@ ggplot(data = percentcoverageSPECIES.df, mapping = aes(x = ground.type, y = perc
 
 
 #### Fitting rock data to linear model:
-rocksize.lm <- lm(data = rocksize.df, rock.circumference ~ species)
+rocksize.lm <- lm(data = rocksize.df, log(rock.circumference) ~ -1 + species)
 summary(rocksize.lm)
 par(mfrow = c(2, 2))
 plot(rocksize.lm)
