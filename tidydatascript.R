@@ -94,11 +94,8 @@ par(mfrow = c(2, 2))
 plot(rocksize.lm)
 
 #### Fitting rock data to poisson model:
-rocksize.glm <- glm(data = rocksize.df, rock.circumference ~ as.factor(species), poisson)
+rocksize.glm <- glm(data = rocksize.df, rock.circumference ~ species, poisson)
 summary(rocksize.glm)
 par(mfrow = c(2, 2))
 plot(rocksize.glm)
 
-#### Fitting rock data to binomial model:
-rocksize.binom <- glm(data = rocksize.df, rock.circumference ~ as.factor(species), binomial)
-summary(rocksize.binom)
