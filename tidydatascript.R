@@ -2,6 +2,7 @@
 ### Q1: Is there any evidence that sea birds are choosing locations to nest based on rock size? Is there differences between species?
 ### Q2: Is there any evidence that sea bird nesting location is affected by substrate type in a given area? Is there differences between species?
 
+####Steps for tidying and graphing data
 # STEP 1: Replace "NA" with "0"
 # STEP 2: For coloumns 7-16, "0" should be replaced with "NA"
 # Step 3: Remove 'home' row
@@ -12,6 +13,7 @@
 # STEP 8: Create boxplot of rocksize in relation to species
 # STEP 9: In percentcoverage.df, create seperate columns for 'ground.type' and 'amount.of.cover'
 # STEP 10: Create graph of percent coverage in relation to species
+
 
 library(tidyverse)
 original.df <- read_csv("./originalbirddata.csv")
@@ -41,7 +43,7 @@ rocksize.df <- rocksize.df %>%
 rocksize.df <- rocksize.df %>%
   gather('1', '2', '3', '4', '5', '6', '7', '8', '9', '10', key = "rock#", value = "rock.circumference")
 
-# STEP 8: Create boxplot of rocksize in relation to species
+# STEP 8: Create boxplot of rock size in relation to species
 ggplot(data = rocksize.df, mapping = aes(x = species, y = rock.circumference)) +
   geom_boxplot(varwidth = TRUE) +
   ggtitle("Diameter of Rocks Found Near Nests of Various Species on _______ Island") + 
@@ -83,3 +85,19 @@ ggplot(data = percentcoverageSPECIES.df, mapping = aes(x = ground.type, y = perc
   ylab("Percent Cover") +
   scale_x_discrete(labels = c('Other', 'Mud or Dirt', 'Rock', 'Vegetation'), 
                    limits = c('other', 'mud.dirt','rock', 'vegetation'))
+
+
+#### Fitting rock data to linear model:
+rocksize.lm <- lm(data = rocksize.df, rock.circumference ~ species)
+summary(rocksize.lm)
+par(mfrow = c(2, 2))
+plot(rocksize.lm)
+
+#### Fitting rock data to poisson model:
+rocksize.glm <- glm(data = rocksize.df, rock.circumference ~ species, poisson)
+summary(rocksize.glm)
+par(mfrow = c(2, 2))
+plot(rocksize.glm)
+
+#### Fitting rock data to binomial model:
+C <- rbinom(n = n, size = N, prob = exp.p)
