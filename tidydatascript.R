@@ -44,11 +44,11 @@ rocksize.df <- rocksize.df %>%
   gather('1', '2', '3', '4', '5', '6', '7', '8', '9', '10', key = "rock#", value = "rock.circumference")
 
 # STEP 8: Create boxplot of rock size in relation to species
-ggplot(data = rocksize.df, mapping = aes(x = species, y = rock.circumference)) +
+ggplot(data = rocksize.df, mapping = aes(x = species, y = log(rock.circumference))) +
   geom_boxplot(varwidth = TRUE) +
   ggtitle("Diameter of Rocks Found Near Nests of Various Species on _______ Island") + 
   xlab("Species") + 
-  ylab("Diameter (cm)") +
+  ylab("log(diameter) (cm)") +
   scale_x_discrete(labels = c('Common Eider', 'Arctic Tern', 'Sabine Gull', 'Long-Tailed Duck', 'Purple Sandpiper', 'Random'),
                    limits = c('coei', 'arte', 'sagu', 'ltdu', 'pusa', 'rand'))
 ### creates boxplot with width proportional to the number of observations
@@ -88,7 +88,7 @@ ggplot(data = percentcoverageSPECIES.df, mapping = aes(x = ground.type, y = perc
 
 
 #### Fitting rock data to linear model:
-rocksize.lm <- lm(data = rocksize.df, log(rock.circumference) ~ -1 + species)
+rocksize.lm <- glm(data = rocksize.df, log(rock.circumference) ~ -1 + species)
 summary(rocksize.lm)
 par(mfrow = c(2, 2))
 plot(rocksize.lm)
