@@ -44,14 +44,18 @@ rocksize.df <- rocksize.df %>%
   gather('1', '2', '3', '4', '5', '6', '7', '8', '9', '10', key = "rock#", value = "rock.circumference")
 
 # STEP 8: Create boxplot of rock size in relation to species
+x <- c('coei', 'arte', 'sagu', 'ltdu', 'rand')
+y <- c(3, 3, 3, 3, 3)
+
 ggplot(data = rocksize.df, mapping = aes(x = species, y = log(rock.circumference))) +
   geom_boxplot(varwidth = TRUE) +
   ggtitle("Diameter of Rocks Found Near Nests of Various Species on _______ Island") + 
   xlab("Species") + 
   ylab("log(diameter) (cm)") +
+  annotate("text", x = x, y = y, label = "**", cex = 5) +
   scale_x_discrete(labels = c('Common Eider', 'Arctic Tern', 'Sabine Gull', 'Long-Tailed Duck', 'Purple Sandpiper', 'Random'),
                    limits = c('coei', 'arte', 'sagu', 'ltdu', 'pusa', 'rand'))
-### creates boxplot with width proportional to the number of observations
+### creates boxplot with width proportional to the number of observations, with '**' representing significant p-values
 
 # STEP 9: Rename columns in percentcoverage.df 
 percentcoverage.df <- percentcoverage.df %>%
