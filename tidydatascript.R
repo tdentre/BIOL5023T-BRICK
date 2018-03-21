@@ -49,7 +49,7 @@ y <- c(3, 3, 3, 3, 3)
 
 ggplot(data = rocksize.df, mapping = aes(x = species, y = log(rock.circumference))) +
   geom_boxplot(varwidth = TRUE) +
-  ggtitle("Diameter of Rocks Found Near Nests of Various Species on _______ Island") + 
+  ggtitle("Diameter of Rocks Found Near Nests of Various Bird Species") + 
   xlab("Species") + 
   ylab("log(diameter) (cm)") +
   annotate("text", x = x, y = y, label = "**", cex = 5) +
@@ -84,7 +84,7 @@ ggplot(data = percentcoverageSPECIES.df, mapping = aes(x = ground.type, y = perc
   geom_boxplot() +
   facet_wrap(~ species, nrow = 2) +
   coord_flip() +
-  ggtitle("Amount of Coverage of Different Substrates Around the Nests of Various Species on _______ Island") +
+  ggtitle("Amount of Coverage of Different Substrates Around the Nests of Various Bird Species") +
   xlab("Substrate Type") + 
   ylab("Percent Cover") +
   scale_x_discrete(labels = c('Other', 'Mud or Dirt', 'Rock', 'Vegetation'), 
