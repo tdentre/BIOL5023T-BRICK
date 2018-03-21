@@ -39,15 +39,15 @@ rocksize.df <- select(original.df, species, photo, X1, X2, X3, X4, X5, X6, X7, X
 rocksize.df <- rocksize.df %>%
   rename("1" = "X1", "2" = "X2","3" = "X3","4" = "X4","5" = "X5","6" = "X6","7" = "X7","8" = "X8","9" = "X9","10" = "X10")
 
-# STEP 7: In rocksize.df, create seperate columns for 'rock.num' and 'rock.circumference'
+# STEP 7: In rocksize.df, create seperate columns for 'rock.num' and 'rock.diameter'
 rocksize.df <- rocksize.df %>%
-  gather('1', '2', '3', '4', '5', '6', '7', '8', '9', '10', key = "rock#", value = "rock.circumference")
+  gather('1', '2', '3', '4', '5', '6', '7', '8', '9', '10', key = "rock#", value = "rock.diameter")
 
 # STEP 8: Create boxplot of rock size in relation to species
 x <- c('coei', 'arte', 'sagu', 'ltdu', 'rand')
 y <- c(3, 3, 3, 3, 3)
 
-ggplot(data = rocksize.df, mapping = aes(x = species, y = log(rock.circumference))) +
+ggplot(data = rocksize.df, mapping = aes(x = species, y = log(rock.diameter))) +
   geom_boxplot(varwidth = TRUE) +
   ggtitle("Diameter of Rocks Found Near Nests of Various Bird Species") + 
   xlab("Species") + 
@@ -91,6 +91,7 @@ ggplot(data = percentcoverageSPECIES.df, mapping = aes(x = ground.type, y = perc
                    limits = c('other', 'mud.dirt','rock', 'vegetation'))
 
 
+
 #### Fitting rock data to linear model:
 rocksize.lm <- glm(data = rocksize.df, log(rock.circumference) ~ -1 + species)
 summary(rocksize.lm)
@@ -99,9 +100,8 @@ plot(rocksize.lm)
 
 # Summary shows the only non-significant values is pusa - this may be a factor of small sample size
 
-#### Fitting rock data to poisson model:
-rocksize.glm <- glm(data = rocksize.df, as.integer(rock.circumference) ~ species, poisson)
-summary(rocksize.glm)
-par(mfrow = c(2, 2))
-plot(rocksize.glm)
+
+
+#### Fitting percent coverage data to binomial model:
+
 
