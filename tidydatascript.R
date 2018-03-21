@@ -93,6 +93,8 @@ summary(rocksize.lm)
 par(mfrow = c(2, 2))
 plot(rocksize.lm)
 
+# Summary shows the only non-significant values is pusa - this may be a factor of small sample size
+
 #### Fitting rock data to poisson model:
 rocksize.glm <- glm(data = rocksize.df, as.integer(rock.circumference) ~ species, poisson)
 summary(rocksize.glm)
