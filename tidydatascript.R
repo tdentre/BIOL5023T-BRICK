@@ -2,7 +2,7 @@
 ### Q1: Is there any evidence that sea birds are choosing locations to nest based on rock size? Is there differences between species?
 ### Q2: Is there any evidence that sea bird nesting location is affected by substrate type in a given area? Is there differences between species?
 
-####Steps for tidying and graphing data
+#### Steps for tidying and graphing data
 # STEP 1: Replace "NA" with "0"
 # STEP 2: For coloumns 7-16, "0" should be replaced with "NA"
 # Step 3: Remove 'home' row
@@ -14,8 +14,9 @@
 # STEP 9: In percentcoverage.df, create seperate columns for 'ground.type' and 'amount.of.cover'
 # STEP 10: Create graph of percent coverage in relation to species
 
-
+install.packages("lme4")
 library(tidyverse)
+library(lme4)
 original.df <- read_csv("./originalbirddata.csv")
 
 # STEP 1: Replace "NA" with "0"
@@ -93,15 +94,15 @@ ggplot(data = percentcoverageSPECIES.df, mapping = aes(x = ground.type, y = perc
 
 
 #### Fitting rock data to linear model:
-rocksize.lm <- glm(data = rocksize.df, log(rock.circumference) ~ -1 + species)
+rocksize.lm <- glm(data = rocksize.df, log(rock.diameter) ~ -1 + species)
 summary(rocksize.lm)
 par(mfrow = c(2, 2))
 plot(rocksize.lm)
-
 # Summary shows the only non-significant values is pusa - this may be a factor of small sample size
 
 
 
 #### Fitting percent coverage data to binomial model:
-
+percentcoverage.glm <- glmer(insectCount/NumberOfInsectSamples ~ ProportionalPlantGroupPresence + (1|Location),
+                             weights = NumberofInsectSamples, data = Data, family = "binomial")
 
