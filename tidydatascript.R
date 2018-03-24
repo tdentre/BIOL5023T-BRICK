@@ -117,4 +117,4 @@ summary(percentcoverage.glm)
 par(mfrow = c(2, 2))
 plot(percentcoverage.glm)
 
-## Not a good fit as of now ............
+## Not a good fit as of now ............ y'all heard of beta regression for proportional model fits??
