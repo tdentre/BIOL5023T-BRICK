@@ -112,9 +112,9 @@ proportions.df <- proportions.df %>%
   rename("proportion" = "percent.cover") %>%
   group_by(species)
 
-percentcoverage.glm <- glm(data = proportions.df, proportion ~ ground.type, family = binomial (link = "logit"))
+percentcoverage.glm <- glm(data = proportions.df, proportion ~ ground.type + species, family = binomial (link = "logit"))
 summary(percentcoverage.glm)
 par(mfrow = c(2, 2))
 plot(percentcoverage.glm)
 
-## Not a good fit as of now and not grouped by species............
+## Not a good fit as of now ............
