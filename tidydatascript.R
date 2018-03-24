@@ -116,3 +116,5 @@ percentcoverage.glm <- glm(data = proportions.df, proportion ~ ground.type, fami
 summary(percentcoverage.glm)
 par(mfrow = c(2, 2))
 plot(percentcoverage.glm)
+
+## Not a good fit as of now and not grouped by species............
