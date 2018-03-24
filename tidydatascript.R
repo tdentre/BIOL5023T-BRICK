@@ -112,9 +112,16 @@ proportions.df <- proportions.df %>%
   rename("proportion" = "percent.cover") %>%
   group_by(species)
 
+# fit model
 percentcoverage.glm <- glm(data = proportions.df, proportion ~ ground.type + species, family = binomial (link = "logit"))
 summary(percentcoverage.glm)
 par(mfrow = c(2, 2))
 plot(percentcoverage.glm)
 
 ## Not a good fit as of now ............ y'all heard of beta regression for proportional model fits??
+## Apparently beta regression cannot have values of 0 or 1, which we do have data=0
+
+
+
+
+
