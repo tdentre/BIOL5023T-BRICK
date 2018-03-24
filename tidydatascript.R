@@ -66,6 +66,7 @@ percentcoverage.df <- percentcoverage.df %>%
 percentcoverage.df <- percentcoverage.df %>%
   gather('rock', 'vegetation', 'mud.dirt', 'other', key = "ground.type", value = "percent.cover")
 
+
 # STEP 10: Create graph of percent coverage in relation to species
 
 percentcoverageSPECIES.df <- percentcoverage.df # Turns out theres no command for facet wraps to label each facet individually yet so a new df was made with corrected names
@@ -94,15 +95,24 @@ ggplot(data = percentcoverageSPECIES.df, mapping = aes(x = ground.type, y = perc
 
 
 #### Fitting rock data to linear model:
-rocksize.lm <- glm(data = rocksize.df, log(rock.diameter) ~ -1 + species)
-summary(rocksize.lm)
+rocksize.glm <- glm(data = rocksize.df, log(rock.diameter) ~ -1 + species)
+summary(rocksize.glm)
 par(mfrow = c(2, 2))
-plot(rocksize.lm)
+plot(rocksize.glm)
 # Summary shows the only non-significant values is pusa - this may be a factor of small sample size
 
 
 
 #### Fitting percent coverage data to binomial model:
-percentcoverage.glm <- glmer(insectCount/NumberOfInsectSamples ~ ProportionalPlantGroupPresence + (1|Location),
-                             weights = NumberofInsectSamples, data = Data, family = "binomial")
 
+# Convert % data to proportions
+proportions.df <- percentcoverage.df
+proportions.df$percent.cover <-  proportions.df$percent.cover/100
+proportions.df <- proportions.df %>%
+  rename("proportion" = "percent.cover") %>%
+  group_by(species)
+
+percentcoverage.glm <- glm(data = proportions.df, proportion ~ ground.type, family = binomial (link = "logit"))
+summary(percentcoverage.glm)
+par(mfrow = c(2, 2))
+plot(percentcoverage.glm)
