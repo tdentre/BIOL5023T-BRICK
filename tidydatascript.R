@@ -119,10 +119,9 @@ par(mfrow = c(2, 2))
 plot(percentcoverage.glm)
 
 ## Not a good fit as of now ............ y'all heard of beta regression for proportional model fits??
-## Apparently beta regression cannot have values of 0 or 1, which we do have percentages = 0
+## Apparently beta regression cannot have values of 0 or 1, which we do have percentages = 0 and 1
 ## three variables? average proportion of ground type per species
-
-
+## possible our % data just doesnt have significant results and thus won't fit a model well?
 
 
 
